@@ -1,9 +1,24 @@
 def merge(arr1, arr2)
-  # type your code in here
+  result = []
+  while !arr1.empty? && !arr2.empty?
+    if arr1[0] < arr2[0]
+      result.push(arr1.shift)
+    else
+      result.push(arr2.shift)
+    end
+  end
+  result.concat(arr1).concat(arr2)
 end
 
 def merge_sort(arr)
-  # type your code in here
+  if arr.length <= 1
+    return arr
+  else
+    middle = arr.length / 2
+    left = merge_sort(arr.slice(0...middle))
+    right = merge_sort(arr.slice(middle...arr.length))
+    merge(left, right)
+  end
 end
 
 if __FILE__ == $PROGRAM_NAME
@@ -20,7 +35,6 @@ if __FILE__ == $PROGRAM_NAME
   puts "Expecting: [-10, 0, 2, 2, 5, 10, 20]"
   puts "=>", merge_sort([10, -10, 0, 2, 20, 5, 2])
 
-  # Don't forget to add your own!
 end
 
 # Please add your pseudocode to this file
